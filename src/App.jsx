@@ -1,7 +1,18 @@
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/HomePage";
+import SearchResult from "./pages/SearchResult";
+import CasePage from "./pages/CasePage";
+import HistoryPage from "./pages/HistoryPage";
 
-function App() {
-  return <div className="App"></div>;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchResult />} />
+        <Route path="/case" element={<CasePage />} />
+        <Route path="/history" element={<HistoryPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App;

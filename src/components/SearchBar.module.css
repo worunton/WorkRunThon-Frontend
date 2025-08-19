@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px var(--color-1);
+  background: var(--color-white);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--color-4);
+}
