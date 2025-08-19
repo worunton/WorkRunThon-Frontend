@@ -1,0 +1,36 @@
+:root {
+  /* Primary Colors */
+  --main-green: #8fe597;
+  --main-red: #fa8c8c;
+
+  /* Grayscale */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-1: #a8a8a8;
+  --color-2: #818181;
+  --color-3: #f2f2f2;
+  --color-4: #515151;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  background-color: var(--color-white);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}

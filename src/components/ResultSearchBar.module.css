@@ -1,0 +1,31 @@
+.wrapper {
+  width: 80%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px var(--color-1);
+  background: var(--color-white);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--color-4);
+}
+
+.clearBtn {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-1);
+}

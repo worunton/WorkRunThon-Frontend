@@ -1,0 +1,46 @@
+.header {
+  background: var(--color-white);
+}
+
+.inner {
+  margin: 0 auto;
+  padding: 12px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.logo {
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-4);
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.itemActive {
+  background: var(--color-3);
+}
