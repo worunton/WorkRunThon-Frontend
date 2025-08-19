@@ -1,4 +1,6 @@
 .wrapper {
+  width: 80%;
+  max-width: 720px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -20,4 +22,10 @@
   outline: none;
   font-size: 1rem;
   color: var(--color-4);
+}
+
+.clearBtn {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-1);
 }

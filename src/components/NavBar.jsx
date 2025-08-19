@@ -23,12 +23,11 @@ export default function NavBar() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <div className={styles.logoContainer}>
+        <div className={styles.logoContainer} onClick={() => navigate("/")}>
           <img
             src="/images/logo.png"
             alt="사각사각 로고"
             className={styles.logo}
-            onClick={() => navigate("/")}
           />
           <p className={styles.title}>사각사각</p>
         </div>
