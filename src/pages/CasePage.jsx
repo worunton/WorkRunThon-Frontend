@@ -1,6 +1,7 @@
-import { useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import NavBar from "../components/NavBar";
 import CaseSearchBar from "../components/searchBar/CaseSearchBar";
+import CaseResultList from "../components/CaseResultList";
 
 // Search params 생성
 const buildQuery = (obj) => {
@@ -64,11 +65,28 @@ export default function Case() {
     console.log("[GET]", url);
   }, []);
 
+  const [total] = useState(123); // TODO: 실제 검색 결과 수를 받아와야 함
+  const [loading] = useState(false);
+
+  // 목데이터 (API 스키마에 맞춤)
+  const results = useMemo(
+    () =>
+      Array.from({ length: 10 }, (_, i) => ({
+        title: "대표자 상여 처분의 적법 여부",
+        case_number: `서울행정법원-2021-구합-${70813 + i}`,
+        summary:
+          "원고 법인이 양수받은 채권들의 실현 가능성이 상당히 높은 정도로 성숙·확정되어 익금이 귀속되었다고 보기 부족하며, 보상합의에 따라 지급 받은 금원이 원고(법인)에게 귀속되었다고 보기 어려움",
+        sentenced_at: "2025.07.21",
+      })),
+    []
+  );
+
   return (
     <div>
       <NavBar />
       <CaseSearchBar onSubmit={handleSearch} />
-      {/* TODO: 아래에 결과 카운트/리스트 영역 추가 예정 */}
+
+      <CaseResultList total={total} items={results} loading={loading} />
     </div>
   );
 }
