@@ -1,0 +1,110 @@
+.results {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.countRow {
+  padding: 20px 0;
+  color: var(--color-4);
+}
+
+.countText {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.empty {
+  padding: 24px 0 8px;
+  color: var(--color-4);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  gap: 16px;
+  padding: 0;
+}
+
+/* Card */
+.card {
+  display: flex;
+  border: 1px solid var(--color-1);
+  border-radius: 12px;
+  padding: 24px 20px 20px;
+  background: #fff;
+}
+
+.body {
+  padding-right: 42px;
+  width: 80%;
+}
+
+.title {
+  color: var(--main-red);
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.docnum {
+  color: var(--color-4);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.summary {
+  color: var(--color-4);
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.etc {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: end;
+}
+
+.badge {
+  background-color: var(--main-green);
+  color: var(--color-4);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+.actions {
+  display: flex;
+  margin-top: auto;
+}
+
+.linkBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.linkBtn:hover {
+  background: var(--color-3);
+}
+
+.linkIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
+}

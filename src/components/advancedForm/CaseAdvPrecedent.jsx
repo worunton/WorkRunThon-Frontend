@@ -1,30 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import styles from "./CaseAdvPrecedent.module.css";
-
-/** 예시: ㄱ~ㅎ 정렬된 법원명 (일부 샘플) */
-const ALL_COURTS = [
-  "전체",
-  "고등군사법원",
-  "광주가정법원",
-  "광주고등법원",
-  "광주고등법원전주재판부",
-  "광주지방법원",
-  "광주지방법원목포지원",
-  "광주지방법원순천지원",
-  "대구고등법원",
-  "대법원",
-  "서울가정법원",
-  "서울고등법원",
-  "서울남부지방법원",
-  "서울동부지방법원",
-  "서울북부지방법원",
-  "서울서부지방법원",
-  "서울중앙지방법원",
-  "수원고등법원",
-  "인천지방법원",
-  "전주지방법원",
-  "제주지방법원",
-];
+import courts from "@/constants/courts.json";
 
 /** 라디오 옵션 */
 const COURT_LEVEL = [
@@ -66,8 +42,8 @@ export default function CaseAdvancedPrecedent({ value, onChange }) {
 
   const courtsFiltered = useMemo(() => {
     const q = courtSearch.trim();
-    if (!q) return ALL_COURTS;
-    return ALL_COURTS.filter((c) => c.includes(q));
+    if (!q) return courts;
+    return courts.filter((c) => c.includes(q));
   }, [courtSearch]);
 
   /** 날짜 입력: 숫자만, 자동 포맷(YYYY.MM.DD) */

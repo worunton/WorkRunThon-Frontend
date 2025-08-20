@@ -1,5 +1,5 @@
-import NavBar from "../components/NavBar";
-import SearchBar from "../components/searchBar/SearchBar";
+import NavBar from "@/components/NavBar";
+import SearchBar from "@/components/searchBar/SearchBar";
 import styles from "./Home.module.css";
 
 export default function Home() {
