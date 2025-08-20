@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import CaseAdvPrecedent from "../advancedForm/CaseAdvPrecedent";
-import CaseAdvCurrentDecision from "../advancedForm/CaseAdvCurrentDecision";
-import CaseAdvAdminAppeal from "../advancedForm/CaseAdvAdminAppeal";
+import CaseAdvPrecedent from "@/components/advancedForm/CaseAdvPrecedent";
+import CaseAdvCurrentDecision from "@/components/advancedForm/CaseAdvCurrentDecision";
+import CaseAdvAdminAppeal from "@/components/advancedForm/CaseAdvAdminAppeal";
 import styles from "./CaseSearchBar.module.css";
 
 const CATEGORIES = [

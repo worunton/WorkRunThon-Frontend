@@ -1,5 +1,5 @@
-import NavBar from "../components/NavBar";
-import ResultSearchBar from "../components/searchBar/ResultSearchBar";
+import NavBar from "@/components/NavBar";
+import ResultSearchBar from "@/components/searchBar/ResultSearchBar";
 import styles from "./SearchResult.module.css";
 
 export default function SearchResult() {
