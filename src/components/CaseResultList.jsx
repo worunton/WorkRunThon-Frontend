@@ -1,6 +1,8 @@
+import { useState } from "react";
+import Modal from "@/components/common/Modal";
 import styles from "./CaseResultList.module.css";
 
-function CaseResultCard({ item }) {
+function CaseResultCard({ item, onOpen }) {
   const { title, case_number, summary, sentenced_at } = item || {};
 
   return (
@@ -16,7 +18,11 @@ function CaseResultCard({ item }) {
           <div className={styles.badge}>생산일자: {sentenced_at}</div>
         )}
         <div className={styles.actions}>
-          <button type="button" className={styles.linkBtn}>
+          <button
+            type="button"
+            className={styles.linkBtn}
+            onClick={() => onOpen(item)}
+          >
             <img
               src="/images/link_icon.png"
               alt=""
@@ -35,6 +41,13 @@ export default function CaseResultList({
   loading = false,
   className = "",
 }) {
+  const [selected, setSelected] = useState(null);
+
+  const open = (item) => setSelected(item);
+  const close = () => {
+    setSelected(null);
+  };
+
   return (
     <div className={`${styles.results} ${className}`}>
       {/* 카운트 */}
@@ -54,9 +67,23 @@ export default function CaseResultList({
       {/* 리스트 */}
       <ul className={styles.list}>
         {items.map((it, idx) => (
-          <CaseResultCard key={`${it.case_number}-${idx}`} item={it} />
+          <CaseResultCard
+            key={`${it.case_number}-${idx}`}
+            item={it}
+            onOpen={open}
+          />
         ))}
       </ul>
+
+      {/* TODO: 사건 타임라인 */}
+      <Modal isOpen={!!selected} onClose={close}>
+        {selected && (
+          <div className={styles.modalContent}>
+            <span>제목 문서번호: 문서번호</span>
+            <p className={styles.modalTitle}>{selected.case_number}</p>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
