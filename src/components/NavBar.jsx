@@ -4,7 +4,6 @@ import styles from "./NavBar.module.css";
 const TABS = [
   { key: "law", label: "법령 해석", path: "/" },
   { key: "case", label: "판례 조회", path: "/case" },
-  { key: "history", label: "개정 이력 조회", path: "/history" },
 ];
 
 export default function NavBar() {
@@ -12,13 +11,7 @@ export default function NavBar() {
   const { pathname } = useLocation();
 
   const activeKey =
-    pathname === "/"
-      ? "law"
-      : pathname.startsWith("/case")
-      ? "case"
-      : pathname.startsWith("/history")
-      ? "history"
-      : "law";
+    pathname === "/" ? "law" : pathname.startsWith("/case") ? "case" : "law";
 
   return (
     <header className={styles.header}>

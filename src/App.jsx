@@ -11,7 +11,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchResult />} />
         <Route path="/case" element={<CasePage />} />
-        <Route path="/history" element={<HistoryPage />} />
       </Routes>
     </BrowserRouter>
   );
