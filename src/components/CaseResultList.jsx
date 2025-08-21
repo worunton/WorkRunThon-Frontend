@@ -2,20 +2,36 @@ import { useState } from "react";
 import Modal from "@/components/common/Modal";
 import styles from "./CaseResultList.module.css";
 
-function CaseResultCard({ item, onOpen }) {
-  const { title, case_number, summary, sentenced_at } = item || {};
+const DATE_FIELD_MAP = {
+  precedent: { field: "sentencedAt", label: "선고일" },
+  currentDecision: { field: "terminatedAt", label: "종국일자" },
+  interpretation: { field: "interpretedAt", label: "해석일자" },
+  adminAppeal: { field: "adjudicatedAt", label: "의결일자" },
+};
+
+function getDateInfo(item, category) {
+  const conf = DATE_FIELD_MAP[category] || {};
+  const value = conf.field ? item?.[conf.field] : undefined;
+  return { label: conf.label, value };
+}
+
+function CaseResultCard({ item, onOpen, category }) {
+  const { title, caseNumber, summary } = item || {};
+  const { label: dateLabel, value: dateValue } = getDateInfo(item, category);
 
   return (
     <li className={styles.card}>
       <div className={styles.body}>
         <div className={styles.title}>{title}</div>
-        <div className={styles.docnum}>[문서번호: {case_number}]</div>
+        <div className={styles.docnum}>[문서번호: {caseNumber}]</div>
         <p className={styles.summary}>{summary}</p>
       </div>
 
       <div className={styles.etc}>
-        {sentenced_at && (
-          <div className={styles.badge}>생산일자: {sentenced_at}</div>
+        {dateValue && (
+          <div className={styles.badge}>
+            {dateLabel}: {dateValue}
+          </div>
         )}
         <div className={styles.actions}>
           <button
@@ -40,6 +56,7 @@ export default function CaseResultList({
   items = [],
   loading = false,
   className = "",
+  category = "precedent",
 }) {
   const [selected, setSelected] = useState(null);
 
@@ -66,11 +83,12 @@ export default function CaseResultList({
 
       {/* 리스트 */}
       <ul className={styles.list}>
-        {items.map((it, idx) => (
+        {items.map((it) => (
           <CaseResultCard
-            key={`${it.case_number}-${idx}`}
+            key={it.caseId}
             item={it}
             onOpen={open}
+            category={category}
           />
         ))}
       </ul>
@@ -80,7 +98,7 @@ export default function CaseResultList({
         {selected && (
           <div className={styles.modalContent}>
             <span>제목 문서번호: 문서번호</span>
-            <p className={styles.modalTitle}>{selected.case_number}</p>
+            <p className={styles.modalTitle}>{selected.caseNumber}</p>
           </div>
         )}
       </Modal>
