@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
 import SearchResult from "./pages/SearchResult";
 import CasePage from "./pages/CasePage";
-import HistoryPage from "./pages/HistoryPage";
 
 export default function App() {
   return (

@@ -14,20 +14,18 @@ const buildQuery = (obj) => {
 
 export default function Case() {
   const handleSearch = useCallback((payload) => {
-    const { category, query, precedent, currentDecision, adminAppeal } =
-      payload;
+    const { category, query, precedent, currentDecision } = payload;
 
     // 판례 검색
     if (category === "precedent") {
       const sp = buildQuery({
         category,
         query,
-        courtLevel: precedent.courtLevel,
-        caseTarget: precedent.caseTarget,
+        courtType: precedent.courtLevel,
+        caseType: precedent.caseTarget,
         courtName: precedent.courtName,
-        dateMode: precedent.dateMode,
-        dateFrom: precedent.dateFrom,
-        dateTo: precedent.dateTo,
+        startDate: precedent.dateFrom,
+        endDate: precedent.dateTo,
       });
 
       const url = `/cases/precedents?${sp.toString()}`;
@@ -40,7 +38,7 @@ export default function Case() {
       const sp = buildQuery({
         category,
         query,
-        ...currentDecision,
+        division: currentDecision.chamber,
       });
       const url = `/cases/current_decisions?${sp.toString()}`;
       console.log("[GET]", url);
@@ -52,7 +50,6 @@ export default function Case() {
       const sp = buildQuery({
         category,
         query,
-        ...adminAppeal,
       });
       const url = `/cases/administrative_appeals?${sp.toString()}`;
       console.log("[GET]", url);
@@ -73,10 +70,11 @@ export default function Case() {
     () =>
       Array.from({ length: 10 }, (_, i) => ({
         title: "대표자 상여 처분의 적법 여부",
-        case_number: `서울행정법원-2021-구합-${70813 + i}`,
+        caseId: `case-${i + 1}`,
+        caseNumber: `서울행정법원-2021-구합-${70813 + i}`,
         summary:
           "원고 법인이 양수받은 채권들의 실현 가능성이 상당히 높은 정도로 성숙·확정되어 익금이 귀속되었다고 보기 부족하며, 보상합의에 따라 지급 받은 금원이 원고(법인)에게 귀속되었다고 보기 어려움",
-        sentenced_at: "2025.07.21",
+        sentencedAt: "2025.07.21",
       })),
     []
   );

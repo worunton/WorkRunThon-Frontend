@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import CaseAdvPrecedent from "@/components/advancedForm/CaseAdvPrecedent";
 import CaseAdvCurrentDecision from "@/components/advancedForm/CaseAdvCurrentDecision";
-import CaseAdvAdminAppeal from "@/components/advancedForm/CaseAdvAdminAppeal";
 import styles from "./CaseSearchBar.module.css";
 
 const CATEGORIES = [
@@ -38,9 +37,6 @@ export default function CaseSearchBar({ onSubmit }) {
     chamber: "all",
     disposition: "all",
   });
-  const [advAdmin, setAdvAdmin] = useState({
-    appealType: "all",
-  });
 
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -72,7 +68,7 @@ export default function CaseSearchBar({ onSubmit }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openDropdown, openAdvanced]);
 
-  const isInterpretation = category.value === "interpretation";
+  const hasAdvanced = ["precedent", "currentDecision"].includes(category.value);
 
   const resetAll = () => {
     setCategory(defaultCategory);
@@ -95,11 +91,6 @@ export default function CaseSearchBar({ onSubmit }) {
       disposition: "all",
     });
 
-    // 행정심판재결례
-    setAdvAdmin({
-      appealType: "all",
-    });
-
     navigate("/case", { replace: true });
     inputRef.current?.focus();
   };
@@ -119,7 +110,6 @@ export default function CaseSearchBar({ onSubmit }) {
       query: query.trim(),
       precedent: advPrecedent,
       currentDecision: advCurrent,
-      adminAppeal: advAdmin,
     });
   };
 
@@ -136,9 +126,7 @@ export default function CaseSearchBar({ onSubmit }) {
         <h1 className={styles.title}>어떤 정보를 찾아볼까요?</h1>
 
         <div
-          className={`${styles.formRow} ${
-            isInterpretation ? styles.simple : ""
-          }`}
+          className={`${styles.formRow} ${hasAdvanced ? "" : styles.simple}`}
         >
           {/* 대분류 */}
           <div className={styles.select} ref={dropdownRef}>
@@ -199,7 +187,7 @@ export default function CaseSearchBar({ onSubmit }) {
           </div>
 
           {/* 상세검색 */}
-          {!isInterpretation && (
+          {hasAdvanced && (
             <div className={styles.advWrap} ref={advRef}>
               <button
                 type="button"
@@ -242,12 +230,6 @@ export default function CaseSearchBar({ onSubmit }) {
                     <CaseAdvCurrentDecision
                       value={advCurrent}
                       onChange={setAdvCurrent}
-                    />
-                  )}
-                  {category.value === "adminAppeal" && (
-                    <CaseAdvAdminAppeal
-                      value={advAdmin}
-                      onChange={setAdvAdmin}
                     />
                   )}
                 </div>
