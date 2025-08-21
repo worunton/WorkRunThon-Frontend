@@ -19,7 +19,6 @@ export default function Case() {
     // 판례 검색
     if (category === "precedent") {
       const sp = buildQuery({
-        category,
         query,
         courtType: precedent.courtLevel,
         caseType: precedent.caseTarget,
