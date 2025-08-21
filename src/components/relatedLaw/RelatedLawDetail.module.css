@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.lawName {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--color-4);
+}
+
+.detail {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-4);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.clause {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 10px;
+  align-items: start;
+}
+
+.number {
+  color: var(--color-4);
+  font-weight: 700;
+  min-width: 1.4em;
+}
+
+.text {
+  color: var(--color-4);
+  line-height: 1.8;
+  word-break: keep-all;
+}

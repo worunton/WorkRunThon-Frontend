@@ -6,13 +6,12 @@
 }
 
 .lawName {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 8px;
 }
 
 .article {
-  margin-top: 4px;
+  margin: 24px 0;
   font-size: 1rem;
 
   display: -webkit-box;

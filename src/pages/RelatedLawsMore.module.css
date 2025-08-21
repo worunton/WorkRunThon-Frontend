@@ -11,22 +11,22 @@
 .backBtn {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   gap: 8px;
   color: var(--color-2);
 }
 .backBtn img {
-  height: 14px;
+  height: 12px;
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-4);
 }
 
 .number {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: var(--color-2);
 }
 
