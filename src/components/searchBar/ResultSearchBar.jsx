@@ -15,6 +15,10 @@ export default function ResultSearchBar() {
     inputRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    setValue(initial);
+  }, [initial]);
+
   const submit = () => {
     const q = value.trim();
     if (!q) return;
