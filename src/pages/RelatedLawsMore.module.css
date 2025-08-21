@@ -1,0 +1,38 @@
+.wrapper {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  gap: 8px;
+  color: var(--color-2);
+}
+.backBtn img {
+  height: 14px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-4);
+}
+
+.number {
+  font-size: 1rem;
+  color: var(--color-2);
+}
+
+.cards {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
