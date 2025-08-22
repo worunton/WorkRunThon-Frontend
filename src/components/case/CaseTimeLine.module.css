@@ -1,0 +1,118 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--color-3);
+  color: var(--color-4);
+  width: fit-content;
+}
+
+.body {
+  padding: 16px 20px 24px;
+  overflow: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.caseNo,
+.snapshot {
+  font-size: 0.7rem;
+}
+
+.snapshot {
+  color: var(--color-1);
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  row-gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(90px + 12px + 11px);
+  width: 2px;
+  background: var(--main-red);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 90px 24px 1fr;
+  align-items: start;
+  column-gap: 12px;
+}
+
+.date {
+  white-space: pre-line;
+  color: var(--main-red);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.axis {
+  position: relative;
+  justify-self: center;
+  width: 24px;
+  height: 100%;
+}
+
+.dot {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--main-red);
+  z-index: 1;
+}
+
+.card {
+  border: 1px solid var(--main-red);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background: var(--main-red);
+}
+
+.summary {
+  margin-top: 8px;
+  word-break: keep-all;
+  font-size: 0.8rem;
+}
