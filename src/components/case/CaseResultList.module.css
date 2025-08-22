@@ -1,7 +1,7 @@
 .results {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,8 +18,20 @@
 }
 
 .empty {
-  padding: 24px 0 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  gap: 20px;
   color: var(--color-4);
+}
+.empty img {
+  width: 48px;
+}
+.empty p {
+  text-align: center;
+  white-space: pre-wrap;
 }
 
 .list {

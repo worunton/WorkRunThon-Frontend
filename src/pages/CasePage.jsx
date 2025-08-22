@@ -1,89 +1,136 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import NavBar from "@/components/NavBar";
 import CaseSearchBar from "@/components/searchBar/CaseSearchBar";
 import CaseResultList from "@/components/case/CaseResultList";
+import { getCases } from "@/api/cases";
+import { useEffect, useRef } from "react";
 
-// Search params 생성
-const buildQuery = (obj) => {
-  const sp = new URLSearchParams();
-  Object.entries(obj).forEach(([k, v]) => {
-    if (v !== undefined && v !== null && v !== "") sp.set(k, String(v));
-  });
-  return sp;
-};
+const LIMIT = 20;
 
 export default function Case() {
-  const handleSearch = useCallback((payload) => {
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState([]);
+  const [categoryForList, setCategoryForList] = useState("precedent");
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const sentinelRef = useRef(null);
+  const loadingRef = useRef(false);
+  const lastQueryRef = useRef(null);
+
+  const handleSearch = useCallback(async (payload) => {
     const { category, query, precedent, currentDecision } = payload;
 
-    // 판례 검색
+    // CaseResultList 날짜 라벨을 위해 현재 카테고리 저장
+    setCategoryForList(category);
+
+    // 공통 파라미터
+    const common = {
+      query,
+      display: LIMIT,
+      page: 1,
+    };
+
+    // 카테고리별 추가 파라미터
+    let params = { ...common };
+
     if (category === "precedent") {
-      const sp = buildQuery({
-        query,
-        courtType: precedent.courtLevel,
-        caseType: precedent.caseTarget,
-        courtName: precedent.courtName,
-        startDate: precedent.dateFrom,
-        endDate: precedent.dateTo,
-      });
-
-      const url = `/cases/precedents?${sp.toString()}`;
-      console.log("[GET]", url);
-      return;
+      params = {
+        ...params,
+        courtType: precedent?.courtLevel,
+        caseType: precedent?.caseTarget,
+        courtName:
+          precedent?.courtName === "전체" ? undefined : precedent?.courtName,
+        startDate: precedent?.dateFrom || undefined,
+        endDate: precedent?.dateTo || undefined,
+      };
+    } else if (category === "currentDecision") {
+      params = {
+        ...params,
+        division: currentDecision?.chamber,
+      };
+    } else if (category === "interpretation") {
+      params = {
+        ...params,
+      };
     }
 
-    // 현재결정례 검색
-    if (category === "currentDecision") {
-      const sp = buildQuery({
-        category,
-        query,
-        division: currentDecision.chamber,
-      });
-      const url = `/cases/current_decisions?${sp.toString()}`;
-      console.log("[GET]", url);
-      return;
-    }
+    try {
+      setLoading(true);
+      setResults([]);
+      setPage(1);
+      setHasMore(false);
+      lastQueryRef.current = { category, params };
 
-    // 행정심판재결례 검색
-    if (category === "adminAppeal") {
-      const sp = buildQuery({
-        category,
-        query,
-      });
-      const url = `/cases/administrative_appeals?${sp.toString()}`;
-      console.log("[GET]", url);
-      return;
+      const { items } = await getCases(category, params);
+      setResults(items);
+      setHasMore(items?.length ?? 0);
+      setPage(2);
+    } finally {
+      setLoading(false);
     }
-
-    // 법제처 해석례 검색
-    const sp = buildQuery({ category, query });
-    const url = `/cases/moleg_interpretations?${sp.toString()}`;
-    console.log("[GET]", url);
   }, []);
 
-  const [total] = useState(123); // TODO: 실제 검색 결과 수를 받아와야 함
-  const [loading] = useState(false);
+  // 다음 페이지 로더
+  const loadNext = useCallback(async () => {
+    if (!hasMore || loadingRef.current) return;
+    const q = lastQueryRef.current;
+    if (!q) return;
 
-  // 목데이터 (API 스키마에 맞춤)
-  const results = useMemo(
-    () =>
-      Array.from({ length: 10 }, (_, i) => ({
-        title: "대표자 상여 처분의 적법 여부",
-        caseId: `case-${i + 1}`,
-        caseNumber: `서울행정법원-2021-구합-${70813 + i}`,
-        summary:
-          "원고 법인이 양수받은 채권들의 실현 가능성이 상당히 높은 정도로 성숙·확정되어 익금이 귀속되었다고 보기 부족하며, 보상합의에 따라 지급 받은 금원이 원고(법인)에게 귀속되었다고 보기 어려움",
-        sentencedAt: "2025.07.21",
-      })),
-    []
-  );
+    loadingRef.current = true;
+    try {
+      setLoading(true);
+      const { category, params } = q;
+      const { items: newItems, total: ttl } = await getCases(category, {
+        ...params,
+        page,
+        display: LIMIT,
+      });
+      const merged = [...results, ...(newItems ?? [])];
+      setResults(merged);
+
+      const has = (ttl ?? 0) > merged.length;
+      setHasMore(has);
+      if (newItems?.length) setPage((p) => p + 1);
+    } finally {
+      setLoading(false);
+      loadingRef.current = false;
+    }
+  }, [hasMore, page, results]);
+
+  // 센티넬 관찰
+  useEffect(() => {
+    if (!hasMore || !sentinelRef.current) return;
+    const el = sentinelRef.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const first = entries[0];
+        if (first.isIntersecting) {
+          loadNext();
+        }
+      },
+      { rootMargin: "120px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasMore, loadNext]);
 
   return (
     <div>
       <NavBar />
       <CaseSearchBar onSubmit={handleSearch} />
+      <CaseResultList
+        items={results}
+        loading={loading}
+        category={categoryForList}
+      />
 
-      <CaseResultList total={total} items={results} loading={loading} />
+      {/* 무한스크롤 센티넬 & 로딩 표시 */}
+      {hasMore && <div ref={sentinelRef} style={{ height: 1 }} />}
+      {loading && results.length > 0 && (
+        <div style={{ textAlign: "center", padding: "12px 0", fontSize: 12 }}>
+          더 불러오는 중...
+        </div>
+      )}
     </div>
   );
 }

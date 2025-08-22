@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Modal from "@/components/common/Modal";
 import RelatedLawDetail from "./RelatedLawDetail";
 import RelatedLawAi from "./RelatedLawAi";
@@ -23,11 +23,17 @@ export default function RelatedLawCard({
     if (!disableInternalModal) setOpenAi(true);
   };
 
+  const summary = useMemo(() => {
+    const arr = Array.isArray(item?.content) ? item.content : [];
+    const explains = arr.map((c) => c?.explain?.trim()).filter(Boolean);
+    return explains.join(" ");
+  }, [item]);
+
   return (
     <div className={styles.card}>
       <div className={styles.lawName}>{`{${item.name}}`}</div>
       <div className={styles.article}>
-        {item.detail} {item.content}
+        {item.detail} {summary}
       </div>
       <div className={styles.actions}>
         <button className={styles.fullBtn} onClick={handleOpenDetail}>

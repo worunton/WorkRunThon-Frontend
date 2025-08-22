@@ -31,7 +31,6 @@ export default function Modal({
     <div
       className={styles.backdrop}
       onClick={closeOnBackdrop ? onClose : undefined}
-      aria-hidden="true"
     >
       <div
         className={styles.wrapper}
