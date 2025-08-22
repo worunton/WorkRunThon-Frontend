@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "@/components/common/Modal";
 import CaseTimeLine from "@/components/case/CaseTimeLine";
+import Loading from "@/components/common/Loading";
 import styles from "./CaseResultList.module.css";
 
 const DATE_FIELD_MAP = {
@@ -56,6 +57,7 @@ export default function CaseResultList({
   items = [],
   className = "",
   category = "precedent",
+  loading = false,
 }) {
   const [selected, setSelected] = useState(null);
 
@@ -66,25 +68,33 @@ export default function CaseResultList({
 
   return (
     <div className={`${styles.results} ${className}`}>
-      {/* 비어있을 때 */}
-      {items.length === 0 && (
-        <div className={styles.empty}>
-          <img src="/images/no_result.png" />
-          <p>{` 표시할 결과가 없습니다.\n 상단 검색 기능을 이용해서 원하는 정보를 찾아보세요.`}</p>
+      {loading ? (
+        <div className={styles.loading}>
+          <Loading message="검색 결과를 불러오는 중입니다." />
         </div>
+      ) : (
+        <>
+          {/* 비어있을 때 */}
+          {items.length === 0 ? (
+            <div className={styles.empty}>
+              <img src="/images/no_result.png" alt="검색 결과 없음" />
+              <p>{` 표시할 결과가 없습니다.\n 상단 검색 기능을 이용해서 원하는 정보를 찾아보세요.`}</p>
+            </div>
+          ) : (
+            /* 리스트 */
+            <ul className={styles.list}>
+              {items.map((it) => (
+                <CaseResultCard
+                  key={it.caseId}
+                  item={it}
+                  onOpen={open}
+                  category={category}
+                />
+              ))}
+            </ul>
+          )}
+        </>
       )}
-
-      {/* 리스트 */}
-      <ul className={styles.list}>
-        {items.map((it) => (
-          <CaseResultCard
-            key={it.caseId}
-            item={it}
-            onOpen={open}
-            category={category}
-          />
-        ))}
-      </ul>
 
       <Modal isOpen={!!selected} onClose={close}>
         <CaseTimeLine item={selected} category={category} />
