@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.lawName {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--color-4);
+}
+
+.detail {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-4);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.summary,
+.interpret {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1.3px solid var(--main-red);
+  color: var(--main-red);
+  border-radius: 8px;
+  padding: 12px 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.interpret {
+  border-color: var(--main-green);
+  color: var(--main-green);
+}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.content {
+  color: var(--color-black);
+}
