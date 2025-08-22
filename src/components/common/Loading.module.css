@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+}
+
+.message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-4);
+  text-align: center;
+  white-space: pre-line;
+}
