@@ -38,8 +38,8 @@
 .aiBtn {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-4);
-  background-color: var(--main-green);
+  color: var(--color-white);
+  background-color: var(--main-red);
   padding: 4px 12px;
   border-radius: 6px;
   margin-left: auto;

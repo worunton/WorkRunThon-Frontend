@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import CaseAdvPrecedent from "@/components/advancedForm/CaseAdvPrecedent";
-import CaseAdvCurrentDecision from "@/components/advancedForm/CaseAdvCurrentDecision";
 import styles from "./CaseSearchBar.module.css";
 
 const CATEGORIES = [
@@ -26,16 +25,12 @@ export default function CaseSearchBar({ onSubmit }) {
 
   // 상세 검색 폼 상태
   const [advPrecedent, setAdvPrecedent] = useState({
-    courtLevel: "all",
-    caseTarget: "all",
+    courtLevel: "전체",
+    caseTarget: "전체",
     courtName: "전체",
     dateMode: "all",
     dateFrom: "",
     dateTo: "",
-  });
-  const [advCurrent, setAdvCurrent] = useState({
-    chamber: "all",
-    disposition: "all",
   });
 
   const inputRef = useRef(null);
@@ -68,7 +63,7 @@ export default function CaseSearchBar({ onSubmit }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openDropdown, openAdvanced]);
 
-  const hasAdvanced = ["precedent", "currentDecision"].includes(category.value);
+  const hasAdvanced = category.value === "precedent";
 
   const resetAll = () => {
     setCategory(defaultCategory);
@@ -83,12 +78,6 @@ export default function CaseSearchBar({ onSubmit }) {
       dateMode: "all",
       dateFrom: "",
       dateTo: "",
-    });
-
-    // 현재결정례
-    setAdvCurrent({
-      chamber: "all",
-      disposition: "all",
     });
 
     navigate("/case", { replace: true });
@@ -109,7 +98,6 @@ export default function CaseSearchBar({ onSubmit }) {
       category: category.value,
       query: query.trim(),
       precedent: advPrecedent,
-      currentDecision: advCurrent,
     });
   };
 
@@ -224,12 +212,6 @@ export default function CaseSearchBar({ onSubmit }) {
                     <CaseAdvPrecedent
                       value={advPrecedent}
                       onChange={setAdvPrecedent}
-                    />
-                  )}
-                  {category.value === "currentDecision" && (
-                    <CaseAdvCurrentDecision
-                      value={advCurrent}
-                      onChange={setAdvCurrent}
                     />
                   )}
                 </div>

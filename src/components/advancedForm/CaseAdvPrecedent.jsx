@@ -4,25 +4,25 @@ import courts from "@/constants/courts.json";
 
 /** 라디오 옵션 */
 const COURT_LEVEL = [
-  { label: "전체", value: "all" },
-  { label: "대법원", value: "supreme" },
-  { label: "하급심", value: "lower" },
+  { label: "전체", value: "전체" },
+  { label: "대법원", value: "대법원" },
+  { label: "하급심", value: "하급심" },
 ];
 
 const CASE_TARGET = [
-  { label: "전체", value: "all" },
-  { label: "가사", value: "family" },
-  { label: "민사", value: "civil" },
-  { label: "세무", value: "tax" },
-  { label: "행정", value: "admin" },
-  { label: "특허", value: "patent" },
-  { label: "형사", value: "criminal" },
+  { label: "전체", value: "전체" },
+  { label: "가사", value: "가사" },
+  { label: "민사", value: "민사" },
+  { label: "세무", value: "세무" },
+  { label: "행정", value: "행정" },
+  { label: "특허", value: "특허" },
+  { label: "형사", value: "형사" },
 ];
 
 export default function CaseAdvancedPrecedent({ value, onChange }) {
   const [local, setLocal] = useState({
-    courtLevel: "all",
-    caseTarget: "all",
+    courtLevel: "전체",
+    caseTarget: "전체",
     courtName: "전체",
     dateMode: "all", // 'all' | 'manual'
     dateFrom: "",

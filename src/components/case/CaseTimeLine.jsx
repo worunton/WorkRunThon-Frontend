@@ -3,7 +3,7 @@ import Loading from "@/components/common/Loading";
 import { fetchCaseTimeline } from "@/api/cases";
 import styles from "./CaseTimeLine.module.css";
 
-export default function CaseDetailModalContent({ item }) {
+export default function CaseDetailModalContent({ item, category }) {
   const [loading, setLoading] = useState(true);
   const [timeline, setTimeline] = useState([]);
   const [snapshotAt, setSnapshotAt] = useState("");
@@ -16,7 +16,7 @@ export default function CaseDetailModalContent({ item }) {
       try {
         setLoading(true);
         setSnapshotAt(formatKSTNow());
-        const data = await fetchCaseTimeline(item.caseId);
+        const data = await fetchCaseTimeline(category, item.caseId);
         if (!cancelled) setTimeline(Array.isArray(data) ? data : []);
       } catch (e) {
         if (!cancelled)
@@ -28,7 +28,7 @@ export default function CaseDetailModalContent({ item }) {
     return () => {
       cancelled = true;
     };
-  }, [item?.caseId]);
+  }, [category, item?.caseId]);
 
   if (!item) return null;
 
@@ -48,8 +48,10 @@ export default function CaseDetailModalContent({ item }) {
     <div className={styles.wrapper}>
       <div className={styles.head}>
         <div className={styles.title}>{title}</div>
-        <div className={styles.caseNo}>{`[문서번호: ${caseNumber}]`}</div>
-        <div className={styles.snapshot}>{`{${snapshotAt} 기준}`}</div>
+        <div className={styles.meta}>
+          <div className={styles.caseNo}>{`[문서번호: ${caseNumber}]`}</div>
+          <div className={styles.snapshot}>{`{${snapshotAt} 기준}`}</div>
+        </div>
       </div>
 
       {/* 타임라인 본문 */}

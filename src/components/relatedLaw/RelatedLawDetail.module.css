@@ -31,17 +31,11 @@
   margin-top: 8px;
 }
 
-.clause {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0 10px;
-  align-items: start;
-}
-
-.number {
-  color: var(--color-4);
-  font-weight: 700;
-  min-width: 1.4em;
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .text {

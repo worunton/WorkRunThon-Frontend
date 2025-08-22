@@ -4,10 +4,10 @@ import CaseTimeLine from "@/components/case/CaseTimeLine";
 import styles from "./CaseResultList.module.css";
 
 const DATE_FIELD_MAP = {
-  precedent: { field: "sentencedAt", label: "선고일" },
-  currentDecision: { field: "terminatedAt", label: "종국일자" },
-  interpretation: { field: "interpretedAt", label: "해석일자" },
-  adminAppeal: { field: "adjudicatedAt", label: "의결일자" },
+  precedent: { field: "sentencedAt", label: "선고일자" },
+  currentDecision: { field: "terminatedAt", label: "선고일자" },
+  interpretation: { field: "interpretedAt", label: "선고일자" },
+  adminAppeal: { field: "adjudicatedAt", label: "선고일자" },
 };
 
 function getDateInfo(item, category) {
@@ -53,9 +53,7 @@ function CaseResultCard({ item, onOpen, category }) {
 }
 
 export default function CaseResultList({
-  total = 0,
   items = [],
-  loading = false,
   className = "",
   category = "precedent",
 }) {
@@ -68,18 +66,12 @@ export default function CaseResultList({
 
   return (
     <div className={`${styles.results} ${className}`}>
-      {/* 카운트 */}
-      <div className={styles.countRow}>
-        <span className={styles.countText}>
-          {loading
-            ? "로딩 중..."
-            : `총 ${total.toLocaleString()}건 조회되었습니다.`}
-        </span>
-      </div>
-
       {/* 비어있을 때 */}
-      {!loading && items.length === 0 && (
-        <div className={styles.empty}>표시할 결과가 없습니다.</div>
+      {items.length === 0 && (
+        <div className={styles.empty}>
+          <img src="/images/no_result.png" />
+          <p>{` 표시할 결과가 없습니다.\n 상단 검색 기능을 이용해서 원하는 정보를 찾아보세요.`}</p>
+        </div>
       )}
 
       {/* 리스트 */}
@@ -95,7 +87,7 @@ export default function CaseResultList({
       </ul>
 
       <Modal isOpen={!!selected} onClose={close}>
-        <CaseTimeLine item={selected} />
+        <CaseTimeLine item={selected} category={category} />
       </Modal>
     </div>
   );
