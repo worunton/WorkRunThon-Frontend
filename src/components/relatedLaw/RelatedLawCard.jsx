@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import Modal from "@/components/common/Modal";
-import RelatedLawDetail from "./RelatedLawDetail";
+import LawDetailModal from "./LawDetailModal";
 import RelatedLawAi from "./RelatedLawAi";
 import styles from "./RelatedLawCard.module.css";
 
@@ -46,9 +46,11 @@ export default function RelatedLawCard({
 
       {!disableInternalModal && (
         <>
-          <Modal isOpen={openDetail} onClose={() => setOpenDetail(false)}>
-            <RelatedLawDetail law={item} />
-          </Modal>
+          <LawDetailModal
+            isOpen={openDetail}
+            onClose={() => setOpenDetail(false)}
+            law={item}
+          />
 
           <Modal isOpen={openAi} onClose={() => setOpenAi(false)}>
             <RelatedLawAi law={item} />
