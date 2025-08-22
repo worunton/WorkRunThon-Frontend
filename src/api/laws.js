@@ -29,3 +29,7 @@ export async function requestAiInterpretation(law) {
   const body = lawToAiBody(law);
   return post("law/ai", body);
 }
+
+export async function fetchLawHistory(payload) {
+  return post("law/change", payload);
+}

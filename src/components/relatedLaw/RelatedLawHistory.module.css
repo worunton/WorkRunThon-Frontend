@@ -1,0 +1,145 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+/* 상단 헤더 */
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex: 0 0 auto;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--color-3);
+  background: var(--color-white);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lawName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-4);
+}
+
+.detail {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--color-2);
+}
+
+.body {
+  padding: 16px 20px 24px;
+  overflow: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* 타임라인 공통 레이아웃  */
+.timeline {
+  position: relative;
+  display: grid;
+  row-gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(90px + 12px + 11px);
+  width: 2px;
+  background: var(--main-red);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 90px 24px 1fr;
+  align-items: start;
+  column-gap: 12px;
+}
+
+/* 좌측 날짜(공포일자) */
+.date {
+  text-align: right;
+  color: var(--main-red);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* 축/도트 */
+.axis {
+  position: relative;
+  justify-self: center;
+  width: 24px;
+  height: 100%;
+}
+.dot {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--main-red);
+  z-index: 1;
+}
+
+/* 카드 */
+.card {
+  border: 1px solid var(--main-red);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+/* 칩들 (제개정구분/공포번호/시행일자) */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--main-red);
+  border: 1.5px solid var(--main-red);
+  background: var(--color-white);
+}
+
+.strong {
+  color: var(--color-white);
+  background: var(--main-red);
+  border-color: var(--main-red);
+}
+
+/* 조문 목록 */
+.clauses {
+  display: grid;
+  gap: 6px;
+}
+
+/* 소관부처 */
+.company {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--color-4);
+}
+.companyName {
+  font-weight: 700;
+}
