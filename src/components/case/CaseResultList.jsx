@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "@/components/common/Modal";
+import CaseTimeLine from "@/components/case/CaseTimeLine";
 import styles from "./CaseResultList.module.css";
 
 const DATE_FIELD_MAP = {
@@ -93,14 +94,8 @@ export default function CaseResultList({
         ))}
       </ul>
 
-      {/* TODO: 사건 타임라인 */}
       <Modal isOpen={!!selected} onClose={close}>
-        {selected && (
-          <div className={styles.modalContent}>
-            <span>제목 문서번호: 문서번호</span>
-            <p className={styles.modalTitle}>{selected.caseNumber}</p>
-          </div>
-        )}
+        <CaseTimeLine item={selected} />
       </Modal>
     </div>
   );

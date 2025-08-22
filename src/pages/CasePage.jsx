@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import NavBar from "@/components/NavBar";
 import CaseSearchBar from "@/components/searchBar/CaseSearchBar";
-import CaseResultList from "@/components/CaseResultList";
+import CaseResultList from "@/components/case/CaseResultList";
 
 // Search params 생성
 const buildQuery = (obj) => {
