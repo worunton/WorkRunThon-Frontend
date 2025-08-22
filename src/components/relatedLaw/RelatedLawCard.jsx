@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Modal from "@/components/common/Modal"; // 경로는 프로젝트에 맞춰 주세요
+import Modal from "@/components/common/Modal";
 import RelatedLawDetail from "./RelatedLawDetail";
+import RelatedLawAi from "./RelatedLawAi";
 import styles from "./RelatedLawCard.module.css";
 
 export default function RelatedLawCard({
@@ -9,14 +10,18 @@ export default function RelatedLawCard({
   onClickAi,
   disableInternalModal = false,
 }) {
-  const [open, setOpen] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
+  const [openAi, setOpenAi] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpenDetail = () => {
     onClickFull?.(item);
-    if (!disableInternalModal) setOpen(true);
+    if (!disableInternalModal) setOpenDetail(true);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleOpenAi = () => {
+    onClickAi?.(item);
+    if (!disableInternalModal) setOpenAi(true);
+  };
 
   return (
     <div className={styles.card}>
@@ -25,18 +30,24 @@ export default function RelatedLawCard({
         {item.detail} {item.content}
       </div>
       <div className={styles.actions}>
-        <button className={styles.fullBtn} onClick={handleOpen}>
+        <button className={styles.fullBtn} onClick={handleOpenDetail}>
           전체보기
         </button>
-        <button className={styles.aiBtn} onClick={() => onClickAi(item)}>
+        <button className={styles.aiBtn} onClick={handleOpenAi}>
           AI 해석
         </button>
       </div>
 
       {!disableInternalModal && (
-        <Modal isOpen={open} onClose={handleClose}>
-          <RelatedLawDetail law={item} />
-        </Modal>
+        <>
+          <Modal isOpen={openDetail} onClose={() => setOpenDetail(false)}>
+            <RelatedLawDetail law={item} />
+          </Modal>
+
+          <Modal isOpen={openAi} onClose={() => setOpenAi(false)}>
+            <RelatedLawAi law={item} />
+          </Modal>
+        </>
       )}
     </div>
   );
