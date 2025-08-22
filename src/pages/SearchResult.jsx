@@ -30,10 +30,18 @@ export default function SearchResult() {
       return;
     }
 
+    setLoading(true);
+    setLawSearchId(null);
+    setCount(0);
+    setLawList([]);
+    setQuestions([]);
+
+    let cancelled = false;
+
     (async () => {
       try {
-        setLoading(true);
         const res = await searchLaws(query);
+        if (cancelled) return;
         setLawSearchId(res?.lawSearchId ?? null);
         setCount(res?.count ?? 0);
         setLawList(Array.isArray(res?.lawList) ? res.lawList : []);
@@ -41,9 +49,13 @@ export default function SearchResult() {
       } catch (e) {
         console.error("법령 검색 실패:", e);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [query]);
 
   return (
