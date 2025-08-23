@@ -59,7 +59,7 @@ export default function CaseDetailModalContent({ item, category }) {
         <ol className={styles.timeline} role="list">
           {timeline.map((it, idx) => (
             <li key={idx} className={styles.item} role="listitem">
-              <div className={styles.date}>{it.date}</div>
+              <div className={styles.date}>{formatDateToDots(it.date)}</div>
               <div className={styles.axis}>
                 <span className={styles.dot} />
               </div>
@@ -83,5 +83,13 @@ export default function CaseDetailModalContent({ item, category }) {
     )} ${pad(kst.getUTCHours())}:${pad(kst.getUTCMinutes())}:${pad(
       kst.getUTCSeconds()
     )}`;
+  }
+
+  function formatDateToDots(dateStr) {
+    const s = String(dateStr ?? "").trim();
+    const m = s.match(/(\d{4})\D*(\d{1,2})\D*(\d{1,2})/);
+    if (!m) return s;
+    const [, y, mo, d] = m;
+    return `${y}.${mo.padStart(2, "0")}.${d.padStart(2, "0")}.`;
   }
 }

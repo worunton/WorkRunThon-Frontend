@@ -64,8 +64,8 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(90px + 12px + 11px);
-  width: 2px;
+  left: calc(90px + 6px + 11px);
+  width: 1.5px;
   background: var(--main-red);
 }
 
@@ -73,17 +73,17 @@
   display: grid;
   grid-template-columns: 90px 24px 1fr;
   align-items: start;
-  column-gap: 12px;
+  column-gap: 6px;
 }
 
 .date {
   white-space: pre-line;
   color: var(--main-red);
   font-weight: 500;
-  font-size: 0.5rem;
+  font-size: 0.72rem;
   text-align: right;
   white-space: pre-line;
-  padding-top: 8px;
+  padding-top: 16px;
 }
 
 .axis {
@@ -95,7 +95,7 @@
 
 .dot {
   position: absolute;
-  top: 16px;
+  top: 23px;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 10px;

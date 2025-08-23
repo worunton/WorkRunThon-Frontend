@@ -35,11 +35,12 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.text {
+.content {
   color: var(--color-4);
-  line-height: 1.8;
+  line-height: 1.5;
   word-break: keep-all;
+  font-size: 0.8rem;
 }

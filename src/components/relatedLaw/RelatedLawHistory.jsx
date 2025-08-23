@@ -38,7 +38,9 @@ export default function RelatedLawHistory({ law }) {
   if (loading) {
     return (
       <div className={styles.wrapper}>
-        <Loading message={`개정 이력을 불러오는 중입니다.`} />
+        <Loading
+          message={`AI 분석을 통해 개정 이력을 정리 중입니다.\n30초~1분 정도 소요될 수 있어요.`}
+        />
       </div>
     );
   }

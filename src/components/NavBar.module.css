@@ -5,9 +5,9 @@
 .inner {
   margin: 0 auto;
   padding: 12px 80px;
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: 1fr auto 1fr;
 }
 
 .logoContainer {
@@ -29,9 +29,8 @@
 }
 
 .nav {
-  flex: 1;
   display: flex;
-  justify-content: center;
+  justify-self: center;
   gap: 8px;
 }
 

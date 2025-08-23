@@ -79,6 +79,7 @@
   white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  font-size: 0.8rem;
   -webkit-box-orient: vertical;
 }
 
@@ -92,7 +93,7 @@
 .badge {
   background-color: var(--main-green);
   color: var(--color-4);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.8rem;
   padding: 6px 12px;
   border-radius: 10px;

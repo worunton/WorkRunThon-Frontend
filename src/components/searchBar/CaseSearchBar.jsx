@@ -134,7 +134,11 @@ export default function CaseSearchBar({ onSubmit }) {
               />
               <span className={styles.filterName}>{category.key}</span>
               <img
-                src="/images/arrow_down_icon.png"
+                src={
+                  openDropdown
+                    ? "/images/x_icon.png"
+                    : "/images/arrow_down_icon.png"
+                }
                 alt=""
                 className={styles.downIcon}
               />

@@ -24,7 +24,7 @@
 
 .lawName {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   color: var(--color-4);
 }
 
@@ -58,7 +58,7 @@
   top: 0;
   bottom: 0;
   left: calc(90px + 12px + 11px);
-  width: 2px;
+  width: 1.5px;
   background: var(--main-red);
 }
 
@@ -108,7 +108,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
 }
 
 .chip {
@@ -132,6 +132,7 @@
 .clauses {
   display: grid;
   gap: 6px;
+  color: var(--color-4);
 }
 
 /* 소관부처 */
