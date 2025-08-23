@@ -20,12 +20,14 @@
 }
 
 .title {
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--color-4);
 }
 
 .number {
+  display: flex;
+  align-self: center;
   font-size: 0.8rem;
   color: var(--color-2);
 }

@@ -76,7 +76,7 @@ export default function SearchResult() {
                 <h2 className={styles.title}>
                   관련 법령
                   <span className={styles.count}>
-                    총 {count}건 조회 되었습니다.
+                    총 {count}건 조회되었습니다.
                   </span>
                 </h2>
 

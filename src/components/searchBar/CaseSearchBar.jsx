@@ -72,13 +72,15 @@ export default function CaseSearchBar({ onSubmit }) {
 
     // 판례
     setAdvPrecedent({
-      courtLevel: "all",
-      caseTarget: "all",
+      courtLevel: "전체",
+      caseTarget: "전체",
       courtName: "전체",
       dateMode: "all",
       dateFrom: "",
       dateTo: "",
     });
+
+    onSubmit?.({ reset: true });
 
     navigate("/case", { replace: true });
     inputRef.current?.focus();
@@ -132,7 +134,11 @@ export default function CaseSearchBar({ onSubmit }) {
               />
               <span className={styles.filterName}>{category.key}</span>
               <img
-                src="/images/arrow_down_icon.png"
+                src={
+                  openDropdown
+                    ? "/images/x_icon.png"
+                    : "/images/arrow_down_icon.png"
+                }
                 alt=""
                 className={styles.downIcon}
               />

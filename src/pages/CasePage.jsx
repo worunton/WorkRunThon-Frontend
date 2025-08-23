@@ -18,6 +18,16 @@ export default function Case() {
   const lastQueryRef = useRef(null);
 
   const handleSearch = useCallback(async (payload) => {
+    // 초기화 처리
+    if (payload?.reset) {
+      setLoading(false);
+      setResults([]);
+      setHasMore(false);
+      setPage(1);
+      lastQueryRef.current = null;
+      return;
+    }
+
     const { category, query, precedent, currentDecision } = payload;
 
     // CaseResultList 날짜 라벨을 위해 현재 카테고리 저장
@@ -126,11 +136,6 @@ export default function Case() {
 
       {/* 무한스크롤 센티넬 & 로딩 표시 */}
       {hasMore ? <div ref={sentinelRef} style={{ height: 1 }} /> : null}
-      {loading && results.length > 0 && (
-        <div style={{ textAlign: "center", padding: "12px 0", fontSize: 12 }}>
-          더 불러오는 중...
-        </div>
-      )}
     </div>
   );
 }
