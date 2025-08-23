@@ -72,13 +72,15 @@ export default function CaseSearchBar({ onSubmit }) {
 
     // 판례
     setAdvPrecedent({
-      courtLevel: "all",
-      caseTarget: "all",
+      courtLevel: "전체",
+      caseTarget: "전체",
       courtName: "전체",
       dateMode: "all",
       dateFrom: "",
       dateTo: "",
     });
+
+    onSubmit?.({ reset: true });
 
     navigate("/case", { replace: true });
     inputRef.current?.focus();
