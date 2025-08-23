@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-height: 70vh;
+  max-height: 68vh;
   overflow: hidden;
 }
 
@@ -13,7 +13,6 @@
   z-index: 10;
   flex: 0 0 auto;
   padding: 12px 20px;
-  border-bottom: 1px solid var(--color-3);
   background: var(--color-white);
 }
 
@@ -36,7 +35,7 @@
 }
 
 .body {
-  padding: 16px 20px 24px;
+  padding-top: 16px;
   overflow: auto;
   flex: 1 1 auto;
   min-height: 0;
@@ -50,6 +49,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  margin-bottom: 20px;
 }
 
 .timeline::before {
@@ -74,7 +74,7 @@
   text-align: right;
   color: var(--main-red);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 /* 축/도트 */
@@ -98,7 +98,7 @@
 
 /* 카드 */
 .card {
-  border: 1px solid var(--main-red);
+  /* border: 1px solid var(--main-red); */
   border-radius: 12px;
   padding: 12px 14px;
 }
@@ -117,7 +117,7 @@
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--main-red);
+  color: var(--color-4);
   border: 1.5px solid var(--main-red);
   background: var(--color-white);
 }
@@ -139,7 +139,4 @@
   margin-top: 10px;
   font-size: 0.85rem;
   color: var(--color-4);
-}
-.companyName {
-  font-weight: 700;
 }
