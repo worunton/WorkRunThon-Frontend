@@ -43,7 +43,7 @@ export default function RelatedLawAi({ law }) {
   ) : (
     <article className={styles.container}>
       <header className={styles.header}>
-        <h3 className={styles.lawName}>{`{${name}}`}</h3>
+        <h3 className={styles.lawName}>{name}</h3>
         <p className={styles.detail}>{detail}</p>
       </header>
 

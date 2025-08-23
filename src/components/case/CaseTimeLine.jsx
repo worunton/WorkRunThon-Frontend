@@ -50,7 +50,7 @@ export default function CaseDetailModalContent({ item, category }) {
         <div className={styles.title}>{title}</div>
         <div className={styles.meta}>
           <div className={styles.caseNo}>{`[문서번호: ${caseNumber}]`}</div>
-          <div className={styles.snapshot}>{`{${snapshotAt} 기준}`}</div>
+          <div className={styles.snapshot}>{`${snapshotAt} 기준`}</div>
         </div>
       </div>
 

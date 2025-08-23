@@ -32,7 +32,7 @@ function CaseResultCard({ item, onOpen, category }) {
       <div className={styles.etc}>
         {dateValue && (
           <div className={styles.badge}>
-            {dateLabel}: {dateValue}
+            {dateLabel}: {formatYMD(dateValue)}
           </div>
         )}
         <div className={styles.actions}>
@@ -101,4 +101,11 @@ export default function CaseResultList({
       </Modal>
     </div>
   );
+}
+
+/** "20171212" → "2017.12.12" */
+function formatYMD(s) {
+  const v = String(s || "").replace(/\D/g, "");
+  if (v.length !== 8) return s ?? "-";
+  return `${v.slice(0, 4)}.${v.slice(4, 6)}.${v.slice(6, 8)}.`;
 }

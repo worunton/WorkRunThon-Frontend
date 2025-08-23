@@ -79,19 +79,19 @@ export default function RelatedLawHistory({ law }) {
                   {/* 제개정구분 */}
                   {it?.changeName && (
                     <span className={`${styles.chip} ${styles.strong}`}>
-                      {`{${it.changeName}}`}
+                      {it.changeName}
                     </span>
                   )}
                   {/* 공포번호 */}
                   {it?.number && (
                     <span className={styles.chip}>
-                      {`{공포번호 제${it.number}호}`}
+                      {`공포번호 제${it.number}호`}
                     </span>
                   )}
                   {/* 시행일자 (YY.MM.DD 형태 노출) */}
                   {it?.actionDate && (
                     <span className={styles.chip}>
-                      {`{시행일자 ${formatYyMd(it.actionDate)}}`}
+                      {`시행일자 ${formatYyMd(it.actionDate)}`}
                     </span>
                   )}
                 </div>
@@ -112,9 +112,7 @@ export default function RelatedLawHistory({ law }) {
                 {it?.company && (
                   <div className={styles.company}>
                     소관부처:{" "}
-                    <span
-                      className={styles.companyName}
-                    >{`{${it.company}}`}</span>
+                    <span className={styles.companyName}>{it.company}</span>
                   </div>
                 )}
               </div>
@@ -130,12 +128,12 @@ export default function RelatedLawHistory({ law }) {
 function formatYMD(s) {
   const v = String(s || "").replace(/\D/g, "");
   if (v.length !== 8) return s ?? "-";
-  return `${v.slice(0, 4)}.${v.slice(4, 6)}.${v.slice(6, 8)}`;
+  return `${v.slice(0, 4)}.${v.slice(4, 6)}.${v.slice(6, 8)}.`;
 }
 
 /** "171212" → "17.12.12" */
 function formatYyMd(s) {
   const v = String(s || "").replace(/\D/g, "");
   if (v.length !== 6) return s ?? "-";
-  return `${v.slice(0, 2)}.${v.slice(2, 4)}.${v.slice(4, 6)}`;
+  return `${v.slice(0, 2)}.${v.slice(2, 4)}.${v.slice(4, 6)}.`;
 }
