@@ -102,7 +102,7 @@ export default function RelatedLawHistory({ law }) {
                     it.content.map((c, i) => (
                       <div key={i} className={styles.clause}>
                         <span className={styles.clauseText}>
-                          {c?.clausecontent}
+                          {normalizeClauseText(c?.clausecontent)}
                         </span>
                       </div>
                     ))}
@@ -136,4 +136,11 @@ function formatYyMd(s) {
   const v = String(s || "").replace(/\D/g, "");
   if (v.length !== 6) return s ?? "-";
   return `${v.slice(0, 2)}.${v.slice(2, 4)}.${v.slice(4, 6)}.`;
+}
+
+function normalizeClauseText(v) {
+  const s = (v ?? "").toString().trim();
+  if (!s) return "미상";
+  if (s.toLowerCase() === "null") return "미상";
+  return s;
 }
