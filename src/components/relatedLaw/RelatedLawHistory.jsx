@@ -79,19 +79,19 @@ export default function RelatedLawHistory({ law }) {
                   {/* 제개정구분 */}
                   {it?.changeName && (
                     <span className={`${styles.chip} ${styles.strong}`}>
-                      {`{${it.changeName}}`}
+                      {it.changeName}
                     </span>
                   )}
                   {/* 공포번호 */}
                   {it?.number && (
                     <span className={styles.chip}>
-                      {`{공포번호 제${it.number}호}`}
+                      {`공포번호 제${it.number}호`}
                     </span>
                   )}
                   {/* 시행일자 (YY.MM.DD 형태 노출) */}
                   {it?.actionDate && (
                     <span className={styles.chip}>
-                      {`{시행일자 ${formatYyMd(it.actionDate)}}`}
+                      {`시행일자 ${formatYyMd(it.actionDate)}`}
                     </span>
                   )}
                 </div>
@@ -112,9 +112,7 @@ export default function RelatedLawHistory({ law }) {
                 {it?.company && (
                   <div className={styles.company}>
                     소관부처:{" "}
-                    <span
-                      className={styles.companyName}
-                    >{`{${it.company}}`}</span>
+                    <span className={styles.companyName}>{it.company}</span>
                   </div>
                 )}
               </div>

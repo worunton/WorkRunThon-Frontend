@@ -120,7 +120,7 @@ export default function SearchResult() {
                   title={q.question}
                 >
                   <div className={styles.dot} />
-                  <span className={styles.qText}>{`{${q.question}}`}</span>
+                  <span className={styles.qText}>{q.question}</span>
                   <img
                     src="/images/arrow_right_icon.png"
                     alt="화살표 아이콘"

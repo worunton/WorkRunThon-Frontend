@@ -31,7 +31,7 @@ export default function RelatedLawCard({
 
   return (
     <div className={styles.card}>
-      <div className={styles.lawName}>{`{${item.name}}`}</div>
+      <div className={styles.lawName}>{item.name}</div>
       <div className={styles.article}>
         {item.detail} {summary}
       </div>
