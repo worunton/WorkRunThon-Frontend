@@ -128,12 +128,12 @@ export default function RelatedLawHistory({ law }) {
 function formatYMD(s) {
   const v = String(s || "").replace(/\D/g, "");
   if (v.length !== 8) return s ?? "-";
-  return `${v.slice(0, 4)}.${v.slice(4, 6)}.${v.slice(6, 8)}`;
+  return `${v.slice(0, 4)}.${v.slice(4, 6)}.${v.slice(6, 8)}.`;
 }
 
 /** "171212" → "17.12.12" */
 function formatYyMd(s) {
   const v = String(s || "").replace(/\D/g, "");
   if (v.length !== 6) return s ?? "-";
-  return `${v.slice(0, 2)}.${v.slice(2, 4)}.${v.slice(4, 6)}`;
+  return `${v.slice(0, 2)}.${v.slice(2, 4)}.${v.slice(4, 6)}.`;
 }
