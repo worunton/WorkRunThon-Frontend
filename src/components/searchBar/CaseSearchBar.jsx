@@ -5,7 +5,7 @@ import styles from "./CaseSearchBar.module.css";
 
 const CATEGORIES = [
   { key: "판례", value: "precedent" },
-  { key: "현재결정례", value: "currentDecision" },
+  { key: "헌재결정례", value: "currentDecision" },
   { key: "법제처해석례", value: "interpretation" },
   { key: "행정심판재결례", value: "adminAppeal" },
 ];
