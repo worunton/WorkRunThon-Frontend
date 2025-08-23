@@ -131,6 +131,7 @@ export default function CaseSearchBar({ onSubmit }) {
                 src="/images/hammer_icon.png"
                 alt=""
                 className={styles.searchIcon}
+                loading="lazy"
               />
               <span className={styles.filterName}>{category.key}</span>
               <img
@@ -141,6 +142,7 @@ export default function CaseSearchBar({ onSubmit }) {
                 }
                 alt=""
                 className={styles.downIcon}
+                loading="lazy"
               />
             </button>
             {openDropdown && (
@@ -170,6 +172,7 @@ export default function CaseSearchBar({ onSubmit }) {
               src="/images/search_icon.png"
               alt=""
               className={styles.searchIcon}
+              loading="lazy"
             />
             <input
               ref={inputRef}
@@ -196,6 +199,7 @@ export default function CaseSearchBar({ onSubmit }) {
                   src="/images/filter_icon.png"
                   alt=""
                   className={styles.searchIcon}
+                  loading="lazy"
                 />
                 <span className={styles.filterName}>상세검색</span>
                 <img
@@ -206,6 +210,7 @@ export default function CaseSearchBar({ onSubmit }) {
                   }
                   alt=""
                   className={styles.downIcon}
+                  loading="lazy"
                 />
               </button>
 

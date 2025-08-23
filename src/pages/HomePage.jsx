@@ -13,6 +13,7 @@ export default function Home() {
             src="/images/logo.png"
             alt="사각사각 로고"
             className={styles.bigLogo}
+            loading="eager"
           />
           <SearchBar />
         </div>

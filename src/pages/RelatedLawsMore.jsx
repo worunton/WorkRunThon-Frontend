@@ -92,7 +92,11 @@ export default function RelatedLawsMore() {
       <div className={styles.wrapper} aria-busy={initLoading || loading}>
         <div className={styles.top}>
           <button className={styles.backBtn} onClick={() => nav(-1)}>
-            <img src="/images/arrow_left_icon.png" alt="뒤로가기" />
+            <img
+              src="/images/arrow_left_icon.png"
+              alt="뒤로가기"
+              loading="lazy"
+            />
             뒤로가기
           </button>
           <h2 className={styles.title}>관련 법령</h2>

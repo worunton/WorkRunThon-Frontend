@@ -44,7 +44,7 @@ export default function Modal({
           aria-label="닫기"
           onClick={onClose}
         >
-          <img src="/images/x_icon.png" alt="닫기 아이콘" />
+          <img src="/images/x_icon.png" alt="닫기 아이콘" loading="lazy" />
         </button>
 
         <div className={styles.content}>{children}</div>

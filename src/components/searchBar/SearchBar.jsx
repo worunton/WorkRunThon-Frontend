@@ -27,7 +27,11 @@ export default function SearchBar() {
 
   return (
     <div className={styles.wrapper}>
-      <img src="/images/search_icon.png" className={styles.icon}></img>
+      <img
+        src="/images/search_icon.png"
+        className={styles.icon}
+        loading="lazy"
+      ></img>
       <input
         ref={inputRef}
         value={value}

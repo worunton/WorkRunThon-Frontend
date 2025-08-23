@@ -40,7 +40,12 @@ export default function ResultSearchBar() {
 
   return (
     <div className={styles.wrapper}>
-      <img src="/images/search_icon.png" alt="" className={styles.icon} />
+      <img
+        src="/images/search_icon.png"
+        alt=""
+        className={styles.icon}
+        loading="lazy"
+      />
       <input
         ref={inputRef}
         value={value}

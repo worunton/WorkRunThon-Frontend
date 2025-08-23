@@ -21,6 +21,7 @@ export default function NavBar() {
             src="/images/logo.png"
             alt="사각사각 로고"
             className={styles.logo}
+            loading="eager"
           />
           <p className={styles.title}>사각사각</p>
         </div>

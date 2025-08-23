@@ -95,6 +95,7 @@ export default function SearchResult() {
                       src="/images/arrow_right_icon.png"
                       alt="더보기 아이콘"
                       className={styles.moreIcon}
+                      loading="lazy"
                     />
                   </button>
                 )}
@@ -125,6 +126,7 @@ export default function SearchResult() {
                     src="/images/arrow_right_icon.png"
                     alt="화살표 아이콘"
                     className={styles.searchBtn}
+                    loading="lazy"
                   />
                 </div>
               ))}

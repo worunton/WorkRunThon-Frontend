@@ -110,6 +110,7 @@ export default function CaseAdvancedPrecedent({ value, onChange }) {
               src="/images/arrow_down_icon.png"
               alt=""
               className={styles.arrowIcon}
+              loading="lazy"
             />
           </button>
 

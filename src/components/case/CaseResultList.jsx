@@ -45,6 +45,7 @@ function CaseResultCard({ item, onOpen, category }) {
               src="/images/link_icon.png"
               alt=""
               className={styles.linkIcon}
+              loading="lazy"
             />
           </button>
         </div>
@@ -77,7 +78,11 @@ export default function CaseResultList({
           {/* 비어있을 때 */}
           {items.length === 0 ? (
             <div className={styles.empty}>
-              <img src="/images/no_result.png" alt="검색 결과 없음" />
+              <img
+                src="/images/no_result.png"
+                alt="검색 결과 없음"
+                loading="lazy"
+              />
               <p>{` 표시할 결과가 없습니다.\n 상단 검색 기능을 이용해서 원하는 정보를 찾아보세요.`}</p>
             </div>
           ) : (
