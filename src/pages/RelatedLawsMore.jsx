@@ -113,13 +113,6 @@ export default function RelatedLawsMore() {
 
             {/* 무한스크롤 센티넬 */}
             {hasMore && <div ref={sentinelRef} className={styles.sentinel} />}
-
-            {/* 추가 로딩 표시 */}
-            {loading && (
-              <div className={styles.moreLoading}>
-                <Loading message="더 불러오는 중..." />
-              </div>
-            )}
           </>
         )}
       </div>
