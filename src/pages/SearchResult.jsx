@@ -109,7 +109,7 @@ export default function SearchResult() {
           </div>
 
           <div className={styles.questionWrapper}>
-            <h2 className={styles.qTitle}>궁금증이 해결되지 않았다면?</h2>
+            <h2 className={styles.qTitle}>{`궁금증이\n해결되지 않았다면?`}</h2>
             <div className={styles.questions}>
               {questions.map((q, index) => (
                 <div

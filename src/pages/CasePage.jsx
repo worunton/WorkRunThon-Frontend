@@ -63,7 +63,7 @@ export default function Case() {
 
       const { items } = await getCases(category, params);
       setResults(items);
-      setHasMore(items?.length ?? 0);
+      setHasMore(Boolean(items?.length));
       setPage(2);
     } finally {
       setLoading(false);
@@ -125,7 +125,7 @@ export default function Case() {
       />
 
       {/* 무한스크롤 센티넬 & 로딩 표시 */}
-      {hasMore && <div ref={sentinelRef} style={{ height: 1 }} />}
+      {hasMore ? <div ref={sentinelRef} style={{ height: 1 }} /> : null}
       {loading && results.length > 0 && (
         <div style={{ textAlign: "center", padding: "12px 0", fontSize: 12 }}>
           더 불러오는 중...

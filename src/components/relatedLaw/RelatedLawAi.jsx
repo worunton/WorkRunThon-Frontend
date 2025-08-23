@@ -11,31 +11,33 @@ export default function RelatedLawAi({ law }) {
   const [aiContent, setAiContent] = useState("");
 
   useEffect(() => {
-    if (!law) return null;
+    if (!law) {
+      setAiTitle("");
+      setAiContent("");
+      return;
+    }
 
+    setLoading(true);
     setAiTitle("");
     setAiContent("");
 
+    let cancelled = false;
+
     (async () => {
       try {
-        setLoading(true);
-
         const response = await requestAiInterpretation(law);
-        if (response) {
-          setAiTitle(response.aiTitle);
-          setAiContent(response.aiContent);
-        } else {
-          setAiTitle("AI 요약을 가져오지 못했습니다.");
-          setAiContent("AI 해석을 가져오지 못했습니다.");
-        }
+        if (cancelled) return;
+        setAiTitle(response.aiTitle);
+        setAiContent(response.aiContent);
       } catch (error) {
         console.error("AI 해석 요청 실패:", error);
-        setAiTitle("요청 실패");
-        setAiContent("AI 해석을 가져오는 데 실패했습니다.");
+        setAiTitle("AI 요약을 가져오지 못했습니다.");
+        setAiContent("AI 해석을 가져오지 못했습니다.");
       } finally {
         setLoading(false);
       }
     })();
+    return () => (cancelled = true);
   }, [law]);
 
   return loading ? (

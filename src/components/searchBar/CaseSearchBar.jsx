@@ -146,6 +146,7 @@ export default function CaseSearchBar({ onSubmit }) {
                       className={styles.dropdownItem}
                       onClick={() => {
                         setCategory(c);
+                        setQuery("");
                         setOpenDropdown(false);
                       }}
                     >
